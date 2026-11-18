@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ricardinho | O Mágico do Futsal</title>
+
+<style>
+:root {
+    --red: #e63946;
+    --dark: #10131b;
+    --light: #f4f5f8;
+    --gold: #f5c451;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--light);
+    color: #222;
+    line-height: 1.7;
+}
+
+header {
+    background: var(--dark);
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--red);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 18px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--red);
+}
+
+.hero {
+    min-height: 570px;
+    background:
+    linear-gradient(90deg, rgba(10,13,20,.95), rgba(10,13,20,.55)),
+    url("https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1600")
+    center/cover;
+    display: flex;
+    align-items: center;
+    padding: 70px 10%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 700px;
+}
+
+.hero h1 {
+    font-size: clamp(45px, 8vw, 85px);
+    line-height: 1.05;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero p {
+    font-size: 19px;
+    margin-bottom: 28px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 25px;
+    background: var(--red);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #bd2633;
+    transform: translateY(-3px);
+}
+
+section {
+    padding: 75px 10%;
+    scroll-margin-top: 75px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 45px;
+}
+
+.intro {
+    max-width: 850px;
+    margin: auto;
+    text-align: center;
+    font-size: 18px;
+}
+
+.dark-section {
+    background: var(--dark);
+    color: white;
+}
+
+.dark-section .section-title {
+    color: white;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: white;
+    padding: 27px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+}
+
+.card h3 {
+    color: var(--red);
+    margin-bottom: 12px;
+}
+
+.dark-section .card {
+    background: #1c2230;
+    color: white;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 35px;
+    text-align: center;
+}
+
+.stat {
+    padding: 25px;
+    background: #1c2230;
+    border-radius: 10px;
+}
+
+.stat h3 {
+    font-size: 38px;
+    color: var(--gold);
+}
+
+.stat p {
+    color: #ddd;
+}
+
+.timeline {
+    max-width: 800px;
+    margin: auto;
+    border-left: 3px solid var(--red);
+    padding-left: 30px;
+}
+
+.timeline-item {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background: var(--red);
+    border-radius: 50%;
+    position: absolute;
+    left: -39px;
+    top: 7px;
+}
+
+.timeline-item h3 {
+    color: var(--red);
+    margin-bottom: 6px;
+}
+
+.highlight {
+    background: #fff0ed;
+    border-left: 5px solid var(--red);
+    padding: 25px;
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+.quote {
+    text-align: center;
+    font-size: 25px;
+    font-style: italic;
+    max-width: 850px;
+    margin: auto;
+    color: var(--gold);
+}
+
+footer {
+    background: #090b10;
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+footer p {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.sources {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.sources a {
+    color: var(--gold);
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+@media(max-width: 800px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    nav a {
+        margin: 0;
+    }
+
+    .hero {
+        min-height: 480px;
+        padding: 55px 7%;
+    }
+
+    section {
+        padding: 55px 7%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">RICARDINHO.</div>
+    <nav>
+        <a href="#inicio">Início</a>
+        <a href="#biografia">Biografia</a>
+        <a href="#carreira">Carreira</a>
+        <a href="#personalidade">Personalidade</a>
+        <a href="#cultura">Cultura</a>
+        <a href="#legado">Legado</a>
+    </nav>
+</header>
+
+<!-- INÍCIO -->
+
+<div class="hero" id="inicio">
+    <div class="hero-content">
+        <h1>RICARDINHO<br><span>O MÁGICO</span></h1>
+        <p>
+            Uma história de superação, talento, dedicação e paixão
+            pelo futsal. Conhece a vida de uma das maiores figuras
+            da história do desporto português.
+        </p>
+        <a href="#biografia" class="btn">Descobrir a sua história</a>
+    </div>
+</div>
+
+<!-- BIOGRAFIA -->
+
+<section id="biografia">
+    <h2 class="section-title">Quem é Ricardinho?</h2>
+    <p class="section-subtitle">A pessoa por detrás do jogador</p>
+
+    <div class="intro">
+        <p>
+            Ricardinho, cujo nome completo é Ricardo Filipe da Silva
+            Duarte Braga, nasceu a 3 de setembro de 1985, em Valbom,
+            Gondomar, Portugal. É considerado um dos melhores jogadores
+            de futsal de todos os tempos.
+        </p>
+        <br>
+        <p>
+            Ficou conhecido pelo talento, pela velocidade, pela criatividade
+            e pelas fintas impressionantes, que lhe deram a alcunha de
+            <strong>«O Mágico»</strong>.
+        </p>
+        <br>
+        <p>
+            Jogava na posição de ala e destacava-se pela capacidade de
+            ultrapassar adversários, marcar golos e criar oportunidades
+            para os colegas.
+        </p>
+    </div>
+
+    <div class="highlight">
+        <strong>Informação importante:</strong>
+        Ricardinho nasceu numa família humilde e enfrentou dificuldades
+        durante a infância. Apesar dos obstáculos, encontrou no desporto
+        uma oportunidade para construir o seu futuro.
+    </div>
+</section>
+
+<!-- INFÂNCIA E CRESCIMENTO -->
+
+<section class="dark-section">
+    <h2 class="section-title">A sua infância e crescimento</h2>
+    <p class="section-subtitle">As dificuldades que ajudaram a construir o seu futuro</p>
+
+    <div class="intro">
+        <p>
+            Ricardinho cresceu em Gondomar, numa família com dificuldades
+            económicas. Desde pequeno demonstrou uma grande paixão pelo
+            futebol e passava muito tempo a jogar e a treinar.
+        </p>
+        <br>
+        <p>
+            Durante a infância, viveu momentos complicados. Um incêndio
+            destruiu a habitação da família e obrigou-a a mudar-se para
+            um bairro social em Valbom.
+        </p>
+        <br>
+        <p>
+            Aos 13 anos, tentou entrar na formação do FC Porto, mas acabou
+            por ser rejeitado devido à sua baixa estatura. Esta situação
+            foi um momento difícil, porque tinha o sonho de ser futebolista.
+        </p>
+        <br>
+        <p>
+            Mais tarde, voltou a encontrar motivação através de um torneio
+            de futsal. O seu talento chamou a atenção de treinadores e
+            abriu-lhe as portas para uma carreira profissional.
+        </p>
+    </div>
+</section>
+
+<!-- CARREIRA -->
+
+<section id="carreira">
+    <h2 class="section-title">A sua carreira no futsal</h2>
+    <p class="section-subtitle">O caminho até ao reconhecimento mundial</p>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3>1998 – Início no futsal</h3>
+            <p>
+                Começou a desenvolver o seu talento no Gramidense,
+                depois de ter passado por clubes de formação.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2001 – Miramar</h3>
+            <p>
+                Deu os primeiros passos no futsal sénior,
+                começando a ganhar experiência competitiva.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2003 – Benfica</h3>
+            <p>
+                Chegou ao Benfica, onde conquistou títulos nacionais
+                e a Liga dos Campeões de futsal em 2010.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2010 – Japão</h3>
+            <p>
+                Transferiu-se para o Nagoya Oceans, onde continuou
+                a conquistar títulos e a divulgar o futsal.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2013 – Inter Movistar</h3>
+            <p>
+                Viveu uma das fases mais marcantes da carreira em Espanha,
+                conquistando vários campeonatos e duas Ligas dos Campeões.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2018 – Campeão da Europa</h3>
+            <p>
+                Conquistou o primeiro Campeonato da Europa de futsal
+                da história de Portugal.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2021 – Campeão do Mundo</h3>
+            <p>
+                Foi uma das grandes figuras da conquista do primeiro
+                Campeonato do Mundo de futsal por Portugal.
+            </p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>2025 – Fim da carreira</h3>
+            <p>
+                Aos 39 anos, anunciou o fim da carreira como jogador,
+                deixando um legado muito importante na modalidade.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONQUISTAS -->
+
+<section class="dark-section">
+    <h2 class="section-title">As grandes conquistas</h2>
+    <p class="section-subtitle">Os resultados de uma carreira extraordinária</p>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>6</h3>
+            <p>Vezes melhor jogador do mundo</p>
+        </div>
+
+        <div class="stat">
+            <h3>2018</h3>
+            <p>Campeão da Europa por Portugal</p>
+        </div>
+
+        <div class="stat">
+            <h3>2021</h3>
+            <p>Campeão do Mundo por Portugal</p>
+        </div>
+
+        <div class="stat">
+            <h3>3</h3>
+            <p>Ligas dos Campeões conquistadas</p>
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Melhor do Mundo</h3>
+            <p>
+                Foi eleito seis vezes o melhor jogador de futsal do mundo:
+                2010, 2014, 2015, 2016, 2017 e 2018.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Euro 2018</h3>
+            <p>
+                Ajudou Portugal a conquistar o primeiro título europeu
+                da sua história e foi eleito o melhor jogador do torneio.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Mundial 2021</h3>
+            <p>
+                Participou na histórica conquista do Campeonato do Mundo
+                de 2021, tendo sido distinguido como melhor jogador.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Títulos de clubes</h3>
+            <p>
+                Conquistou troféus em Portugal, Espanha e outros países,
+                incluindo três Ligas dos Campeões.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PERSONALIDADE -->
+
+<section id="personalidade">
+    <h2 class="section-title">A sua personalidade</h2>
+    <p class="section-subtitle">O que o tornou numa figura especial?</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Determinação</h3>
+            <p>
+                Nunca desistiu dos seus objetivos, mesmo quando encontrou
+                dificuldades e rejeições durante a infância.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Humildade</h3>
+            <p>
+                Apesar do sucesso internacional, manteve uma ligação
+                às suas origens e à sua terra natal.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Espírito de equipa</h3>
+            <p>
+                Percebeu que o sucesso não dependia apenas do talento
+                individual, mas também do trabalho coletivo.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Ambição</h3>
+            <p>
+                Procurou constantemente melhorar, ultrapassar limites
+                e alcançar novos objetivos.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- DECISÕES IMPORTANTES -->
+
+<section class="dark-section">
+    <h2 class="section-title">As decisões que mudaram a sua vida</h2>
+    <p class="section-subtitle">Momentos que definiram o seu percurso</p>
+
+    <div class="intro">
+        <p>
+            Uma das decisões mais importantes foi continuar ligado ao
+            desporto depois de ter sido rejeitado na formação do FC Porto.
+            Em vez de desistir, encontrou no futsal uma nova oportunidade.
+        </p>
+        <br>
+        <p>
+            Outra decisão importante foi aceitar jogar noutros países,
+            como o Japão e Espanha. Estas experiências permitiram-lhe
+            conhecer novas culturas, desenvolver as suas capacidades
+            e tornar-se conhecido internacionalmente.
+        </p>
+        <br>
+        <p>
+            Também teve um papel importante ao continuar a representar
+            Portugal, ajudando a seleção a conquistar títulos históricos.
+            Mais tarde, decidiu terminar o seu percurso como jogador,
+            abrindo espaço para uma nova geração de atletas.
+        </p>
+    </div>
+</section>
+
+<!-- CULTURA -->
+
+<section id="cultura">
+    <h2 class="section-title">A cultura e a sua influência</h2>
+    <p class="section-subtitle">As suas raízes portuguesas e a cultura do futsal</p>
+
+    <div class="intro">
+        <p>
+            Ricardinho cresceu no norte de Portugal, numa realidade
+            em que o futebol e o futsal têm uma grande importância
+            na vida das comunidades.
+        </p>
+        <br>
+        <p>
+            O ambiente em que cresceu ajudou a desenvolver valores como
+            a união, a entreajuda, o esforço e o espírito de comunidade.
+            O desporto tornou-se uma forma de expressão e uma oportunidade
+            para construir um futuro melhor.
+        </p>
+        <br>
+        <p>
+            Ao representar Portugal em competições internacionais,
+            Ricardinho ajudou a divulgar a cultura desportiva portuguesa.
+            As suas vitórias também reforçaram o orgulho nacional,
+            especialmente nas conquistas do Euro 2018 e do Mundial 2021.
+        </p>
+    </div>
+</section>
+
+<!-- INFLUÊNCIA NA SOCIEDADE -->
+
+<section class="dark-section">
+    <h2 class="section-title">A sua influência na sociedade</h2>
+    <p class="section-subtitle">Muito mais do que golos e troféus</p>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Inspirou jovens</h3>
+            <p>
+                A sua história mostra que as dificuldades não têm de
+                determinar o futuro de uma pessoa. Muitos jovens passaram
+                a olhar para o futsal como uma oportunidade.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Valorizou o futsal</h3>
+            <p>
+                Através das suas exibições, ajudou a aumentar a atenção
+                do público e dos meios de comunicação sobre esta modalidade.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Quebrou preconceitos</h3>
+            <p>
+                A sua carreira mostrou que a altura ou a aparência física
+                não determinam o talento, a capacidade ou o sucesso.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Representou Portugal</h3>
+            <p>
+                Tornou-se uma referência do desporto português,
+                levando o nome do país a competições internacionais.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- LEGADO -->
+
+<section id="legado">
+    <h2 class="section-title">O seu legado para o futuro</h2>
+    <p class="section-subtitle">Porque merece ser estudado?</p>
+
+    <div class="intro">
+        <p>
+            Ricardinho deixou uma marca muito importante na história
+            do futsal. O seu talento, as suas conquistas e a sua forma
+            de jogar ajudaram a transformar a maneira como muitas pessoas
+            olham para esta modalidade.
+        </p>
+        <br>
+        <p>
+            A sua história é também um exemplo de superação.
+            Desde uma infância com dificuldades até se tornar
+            campeão europeu e mundial, demonstrou que a dedicação,
+            a persistência e o trabalho podem ajudar a alcançar grandes
+            objetivos.
+        </p>
+        <br>
+        <p>
+            O seu percurso continua a inspirar jovens jogadores,
+            treinadores e adeptos. Mesmo depois de terminar a carreira,
+            os seus feitos permanecem como uma referência para as
+            gerações seguintes.
+        </p>
+        <br>
+        <p>
+            Esta personalidade merece ser estudada porque representa
+            valores importantes para a sociedade: a coragem, a disciplina,
+            a humildade, a igualdade de oportunidades e a capacidade
+            de ultrapassar obstáculos.
+        </p>
+    </div>
+
+    <div class="highlight">
+        <h3>Conclusão</h3>
+        <p>
+            Ricardinho não foi apenas um grande jogador de futsal.
+            Foi uma personalidade que demonstrou que as dificuldades
+            não impedem ninguém de sonhar e alcançar o sucesso.
+            A sua carreira contribuiu para valorizar o futsal,
+            inspirar novas gerações e reforçar o orgulho português.
+            Por tudo isto, o seu nome ficará para sempre ligado
+            à história do desporto.
+        </p>
+    </div>
+</section>
+
+<!-- FRASE FINAL -->
+
+<section class="dark-section">
+    <p class="quote">
+        "O talento pode abrir portas, mas é o trabalho,
+        a dedicação e a persistência que nos levam mais longe."
+    </p>
+    <p style="text-align:center; margin-top:20px; color:#aaa;">
+        Ricardinho — O Mágico do Futsal
+    </p>
+</section>
+
+<!-- FONTES -->
+
+<footer>
+    <h2>RICARDINHO</h2>
+    <p>Um exemplo de talento, superação e dedicação ao desporto.</p>
+
+    <div class="sources">
+        <p>Fontes de informação:</p>
+
+        <a href="https://www.fifa.com/pt"
+           target="_blank">FIFA</a>
+
+        <a href="https://www.uefa.com/futsal/"
+           target="_blank">UEFA</a>
+
+        <a href="https://www.rtp.pt/"
+           target="_blank">RTP</a>
+
+        <a href="https://sjogadores.pt/"
+           target="_blank">Sindicato dos Jogadores</a>
+    </div>
+
+    <br>
+    <p>Trabalho escolar sobre Ricardinho | 2026</p>
+</footer>
+
+<script>
+    // Efeito simples de entrada das secções
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".card, .timeline-item").forEach(item => {
+        item.style.opacity = "0";
+        item.style.transform = "translateY(20px)";
+        item.style.transition = "all 0.7s ease";
+        observer.observe(item);
+    });
+</script>
+
+</body>
+</html>
